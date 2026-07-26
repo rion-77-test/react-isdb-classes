@@ -4,7 +4,7 @@ function Event() {
   }
   return (
   <>
-    <button onClick={handleClick}>Console log a msg</button>
+    <button className="button" onClick={handleClick}>Console log a msg</button>
   </>
   )
 }

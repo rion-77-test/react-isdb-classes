@@ -1,11 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import Home from './App.tsx'
-import {Button as Btn} from './Button.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import App from "./App.tsx";
+import CardSection from "./CardSection.tsx";
+// import {Button as Btn} from './Button.tsx'
+import Counter from "./Count.tsx";
 
-createRoot(document.getElementById('main')!).render(
+createRoot(document.getElementById("main")!).render(
   <StrictMode>
-    <Home />
-    <Btn/>
+    <App />
+    {/*<Btn/> */}
+    <Counter />
+    <CardSection />
   </StrictMode>,
-)
+);

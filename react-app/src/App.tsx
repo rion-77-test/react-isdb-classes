@@ -1,4 +1,5 @@
 import Img1 from './assets/img/999-1920x1080.jpg'
+import { Button } from './Button';
 import Event from './Event';
 function App() {
   const name = "Mina😊";
@@ -16,6 +17,9 @@ function App() {
         </div>
         <div>
           <Event/>
+          <Button type="button" name="Login"/>
+          <Button type="submit" name="Register"/>
+          <button className='btn btn-primary'>Bootstrap Button</button>
         </div>
     </>
   );
