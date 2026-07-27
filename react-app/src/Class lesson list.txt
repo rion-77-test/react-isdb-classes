@@ -1,1 +1,2 @@
 26-07-2026 = State, props
+27-07-2026 = useEffect, interface

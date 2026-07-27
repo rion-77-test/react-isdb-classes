@@ -6,12 +6,17 @@ import App from "./App.tsx";
 import CardSection from "./CardSection.tsx";
 // import {Button as Btn} from './Button.tsx'
 import Counter from "./Count.tsx";
+import Eff from "./Effects.tsx" 
+import UserManage from "./UserManage.tsx";
+
 
 createRoot(document.getElementById("main")!).render(
   <StrictMode>
-    <App />
+    {/* <App /> */}
     {/*<Btn/> */}
-    <Counter />
-    <CardSection />
-  </StrictMode>,
+    {/* <Counter /> */}
+    {/* <CardSection /> */}
+    <Eff></Eff>
+    <UserManage/>
+  </StrictMode>
 );

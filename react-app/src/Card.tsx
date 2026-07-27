@@ -1,11 +1,12 @@
-function Card({ imgSrc, title, text, btnType, btnText }: any) {
+function Card({ imgSrc, title, text, btnType = "btn-warning", btnText, children }: any) {
   return (
     <>
       <div className="card" style={{ width: "18rem;" }}>
         <img src={imgSrc} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
-          <p className="card-text">{text}</p>
+          {/* <p className="card-text">{text}</p> */}
+          {children}
           <a href="#" className={`btn ${btnType}`}>
             {btnText}
           </a>
@@ -14,6 +15,7 @@ function Card({ imgSrc, title, text, btnType, btnText }: any) {
     </>
   );
 }
+
 // function Card(props: any) {
 //   return (
 //     <>
