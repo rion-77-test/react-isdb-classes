@@ -12,6 +12,7 @@ function UserManage() {
 const [user, setUser] = useState<User>(defaultUser)
   return (
     <>
+    <div className="container py-5">
       <h1>User</h1>
       <p><b>ID:</b> {user?.id}</p>
       <p><b>Name:</b> {user?.name}</p>
@@ -19,6 +20,7 @@ const [user, setUser] = useState<User>(defaultUser)
       <p><b>Phone:</b> {user?.phone}</p>
       <p><b>Role ID:</b> {user?.roleId}</p>
       <p><b>Status:</b>{user?.isActive ? " Active" : " Inactive"}</p>
+    </div> 
     </>
   );
 }

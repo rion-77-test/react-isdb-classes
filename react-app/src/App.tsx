@@ -1,30 +1,55 @@
-import Img1 from './assets/img/999-1920x1080.jpg'
-import { Button } from './Button';
-import Event from './Event';
-import ABC, { NewEffect, NewEffect3 } from './Effects'
+import { Link, Outlet } from "react-router";
+import Home from "./Home";
 function App() {
-  const name = "Mina😊";
-  const color = {
-    color: 'red',
-    fontSize : '50px'
-  }
+  
   return (
     <>
-        <div>
-          <img src={Img1} alt="Image" style={{width: '400px', borderRadius: '20px'}} />
-          <h1>Hello <span style={color}>{name}</span> from React!</h1>
-          <p>This is react</p>
-          
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <div className="container">
+          <Link className="navbar-brand" to="/">
+            Navbar
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/">
+                  Home
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to="/card">
+                  Cards
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/user">
+                  User
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
+
+            </ul>           
+          </div>
         </div>
-        <div>
-          <Event/>
-          <Button type="button" name="Login"/>
-          <Button type="submit" name="Register"/>
-          <button className='btn btn-primary'>Bootstrap Button</button>
-          {/* <ABC/>
-          <NewEffect/>
-          <NewEffect3/> */}
-        </div>
+      </nav> 
+      <Outlet/>
     </>
   );
 }
