@@ -1,0 +1,29 @@
+.admin-sidebar {
+    transition: 0.3s;
+}
+
+/* .sidebar-backdrop {
+    background-color: rgba(190, 54, 253, 0.342);
+} */
+
+@media screen and (max-width: 991.98px) {
+    #sidebarToggle:checked + .admin-sidebar {
+        transform: translate(0%) !important;
+    }
+    #sidebarToggle + .admin-sidebar {
+        transform: translate(-100%) !important;
+    }
+    #sidebarToggle:checked ~ .sidebar-backdrop {
+        display: block !important;
+    }
+    #sidebarToggle ~ .sidebar-backdrop {
+        display: none !important;
+    }
+    /* .sidebar-backdrop:focus:has(#sidebarToggle:checked) {
+        transform: translate(-100%) !important;
+    } */
+}
+
+.table td , .table th {
+    background-color: transparent;
+}
