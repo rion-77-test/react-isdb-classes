@@ -81,7 +81,7 @@ function Navbar() {
               >
                 <img
                   className="avatar-img avatar-sm"
-                  src="../assets/images/avatar/avatar.jpg"
+                  src="https://i.pravatar.cc/150?img"
                   alt="Admin Hasan"
                 />
                 <span className="profile-name d-none d-sm-inline">

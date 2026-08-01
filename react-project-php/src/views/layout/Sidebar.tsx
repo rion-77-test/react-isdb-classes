@@ -1,10 +1,9 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 function Sidebar() {
   return (
     <>
      
-      
       <input type="checkbox" className="d-none" id="sidebarToggle" />
       <aside
         className="admin-sidebar"
@@ -28,18 +27,18 @@ function Sidebar() {
         </div>
 
         <nav className="sidebar-nav">
-          <Link className="nav-link active" to="/" aria-current="page">
+          <NavLink className="nav-link" to="/" aria-current="page">
             <span className="nav-icon">
               <i className="bi bi-speedometer2" aria-hidden="true"></i>
             </span>
             <span className="nav-text">Dashboard</span>
-          </Link>
-          <Link className="nav-link" to="/user">
+          </NavLink>
+          <NavLink className="nav-link" to="/user">
             <span className="nav-icon">
               <i className="bi bi-people" aria-hidden="true"></i>
             </span>
             <span className="nav-text">Users</span>
-          </Link>
+          </NavLink>
           <a className="nav-link" href="add-user.html">
             <span className="nav-icon">
               <i className="bi bi-person-plus" aria-hidden="true"></i>

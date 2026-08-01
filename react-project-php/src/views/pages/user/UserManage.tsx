@@ -1,34 +1,24 @@
+import { Link } from "react-router";
+import PageHeading from "../../../components/PageHeading";
+
 function UserManage() {
   return (
     <>
-      <main className="dashboard-content">
+     <main className="dashboard-content">
         <div className="container-fluid px-3 px-lg-4 py-4">
-          <div className="page-heading">
-            <div className="page-heading-copy">
-              <span className="page-icon">
-                <i className="bi bi-people" aria-hidden="true"></i>
-              </span>
-              <div>
-                <p className="eyebrow mb-1">Management</p>
-                <h1 className="h3 mb-1">Users</h1>
-                <p className="text-muted mb-0">
-                  Review accounts, roles, account status, and team ownership.
-                </p>
-              </div>
-            </div>
-            <div className="heading-actions">
-              <a
-                className="btn btn-outline-secondary btn-sm"
-                href="tables.html"
-              >
-                <i className="bi bi-download" aria-hidden="true"></i> Export
-              </a>
-              <a className="btn btn-primary btn-sm" href="add-user.html">
-                <i className="bi bi-person-plus" aria-hidden="true"></i> Add
-                User
-              </a>
-            </div>
-          </div>
+          <PageHeading
+            icon="people"
+            subtitle="Management"
+            title="Users"
+            desc="Review accounts, roles, account status, and team ownership."
+          >
+            {/* <a className="btn btn-outline-secondary btn-sm" href="tables.html">
+              <i className="bi bi-download" aria-hidden="true"></i> Export
+            </a> */}
+            <Link className="btn btn-primary btn-sm" to="/user-create">
+              <i className="bi bi-person-plus" aria-hidden="true"></i> Add User
+            </Link>
+          </PageHeading>
 
           <section className="row g-3 mt-1" aria-label="User summary">
             <div className="col-12 col-sm-6 col-xl-3">
@@ -145,7 +135,7 @@ function UserManage() {
                       <div className="d-flex align-items-center gap-2">
                         <img
                           className="avatar-img avatar-sm"
-                          src="../assets/images/avatar/avatar-1.jpg"
+                          src="https://i.pravatar.cc/149"
                           alt="Sarah Ahmed"
                         />
                         <div>
@@ -163,12 +153,11 @@ function UserManage() {
                     </td>
                     <td>Jan 12, 2026</td>
                     <td className="text-end">
-                      <a
-                        className="btn btn-light btn-sm"
-                        href="user-details.html"
-                      >
-                        View
-                      </a>
+                      <div className="d-flex justify-content-end gap-1">
+                        <button className="btn btn-sm btn-outline-success"><i className="bi bi-eye"></i></button>
+                        <button className="btn btn-sm btn-outline-primary"><i className="bi bi-pencil-square"></i></button>
+                        <button className="btn btn-sm btn-outline-danger"><i className="bi bi-trash"></i></button>
+                      </div>
                     </td>
                   </tr>
                   <tr>
@@ -176,7 +165,7 @@ function UserManage() {
                       <div className="d-flex align-items-center gap-2">
                         <img
                           className="avatar-img avatar-sm"
-                          src="../assets/images/avatar/avatar-2.jpg"
+                          src="https://i.pravatar.cc/151"
                           alt="Rafi Khan"
                         />
                         <div>
@@ -194,12 +183,11 @@ function UserManage() {
                     </td>
                     <td>Feb 03, 2026</td>
                     <td className="text-end">
-                      <a
-                        className="btn btn-light btn-sm"
-                        href="user-details.html"
-                      >
-                        View
-                      </a>
+                      <div className="d-flex justify-content-end gap-1">
+                        <button className="btn btn-sm btn-outline-success"><i className="bi bi-eye"></i></button>
+                        <button className="btn btn-sm btn-outline-primary"><i className="bi bi-pencil-square"></i></button>
+                        <button className="btn btn-sm btn-outline-danger"><i className="bi bi-trash"></i></button>
+                      </div>
                     </td>
                   </tr>
                   <tr>
@@ -207,7 +195,7 @@ function UserManage() {
                       <div className="d-flex align-items-center gap-2">
                         <img
                           className="avatar-img avatar-sm"
-                          src="../assets/images/avatar/avatar-3.jpg"
+                          src="https://i.pravatar.cc/150"
                           alt="Nadia Islam"
                         />
                         <div>
@@ -225,12 +213,11 @@ function UserManage() {
                     </td>
                     <td>Mar 18, 2026</td>
                     <td className="text-end">
-                      <a
-                        className="btn btn-light btn-sm"
-                        href="user-details.html"
-                      >
-                        View
-                      </a>
+                      <div className="d-flex gap-1 justify-content-end">
+                        <button className="btn btn-sm btn-outline-success"><i className="bi bi-eye"></i></button>
+                        <button className="btn btn-sm btn-outline-primary"><i className="bi bi-pencil-square"></i></button>
+                        <button className="btn btn-sm btn-outline-danger"><i className="bi bi-trash"></i></button>
+                      </div>
                     </td>
                   </tr>
                   <tr>
@@ -238,7 +225,7 @@ function UserManage() {
                       <div className="d-flex align-items-center gap-2">
                         <img
                           className="avatar-img avatar-sm"
-                          src="../assets/images/avatar/avatar-4.jpg"
+                          src="https://i.pravatar.cc/152"
                           alt="Mina Torres"
                         />
                         <div>
@@ -256,12 +243,11 @@ function UserManage() {
                     </td>
                     <td>Apr 07, 2026</td>
                     <td className="text-end">
-                      <a
-                        className="btn btn-light btn-sm"
-                        href="user-details.html"
-                      >
-                        View
-                      </a>
+                      <div className="d-flex gap-1 justify-content-end">
+                        <button className="btn btn-sm btn-outline-success"><i className="bi bi-eye"></i></button>
+                        <button className="btn btn-sm btn-outline-primary"><i className="bi bi-pencil-square"></i></button>
+                        <button className="btn btn-sm btn-outline-danger"><i className="bi bi-trash"></i></button>
+                      </div>
                     </td>
                   </tr>
                   <tr>
@@ -269,7 +255,7 @@ function UserManage() {
                       <div className="d-flex align-items-center gap-2">
                         <img
                           className="avatar-img avatar-sm"
-                          src="../assets/images/avatar/avatar-5.jpg"
+                          src="https://i.pravatar.cc/153"
                           alt="Jon Oliver"
                         />
                         <div>
@@ -287,12 +273,11 @@ function UserManage() {
                     </td>
                     <td>Apr 22, 2026</td>
                     <td className="text-end">
-                      <a
-                        className="btn btn-light btn-sm"
-                        href="user-details.html"
-                      >
-                        View
-                      </a>
+                      <div className="d-flex justify-content-end gap-1">
+                        <button className="btn btn-sm btn-outline-success"><i className="bi bi-eye"></i></button>
+                        <button className="btn btn-sm btn-outline-primary"><i className="bi bi-pencil-square"></i></button>
+                        <button className="btn btn-sm btn-outline-danger"><i className="bi bi-trash"></i></button>
+                      </div>
                     </td>
                   </tr>
                 </tbody>

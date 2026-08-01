@@ -27,3 +27,17 @@
 .table td , .table th {
     background-color: transparent;
 }
+
+/* User */
+.form-control, .form-select {
+    border-color: var(--admin-border);
+    background-color: var(--admin-surface);
+    color: var(--admin-text);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #93c5fd;
+    background-color: var(--admin-surface);
+    color: var(--admin-text);
+    box-shadow: var(--admin-ring);
+}
