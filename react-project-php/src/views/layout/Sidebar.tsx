@@ -33,19 +33,81 @@ function Sidebar() {
             </span>
             <span className="nav-text">Dashboard</span>
           </NavLink>
+
+          <small className="text-muted d-flex align-items-center">Product<hr className="w-100 ms-2" /></small>
+          <NavLink className="nav-link" to="/product">
+            <span className="nav-icon">
+              <i className="bi bi-box-seam" aria-hidden="true"></i>
+            </span>
+            <span className="nav-text">Products</span>
+          </NavLink>
+          <NavLink className="nav-link" to="/category">
+            <span className="nav-icon">
+              <i className="bi bi-box-seam" aria-hidden="true"></i>
+            </span>
+            <span className="nav-text">Categories</span>
+          </NavLink>
+          <NavLink className="nav-link" to="/brand">
+            <span className="nav-icon">
+              <i className="bi bi-box-seam" aria-hidden="true"></i>
+            </span>
+            <span className="nav-text">Brand</span>
+          </NavLink>
+
+          <small className="text-muted d-flex align-items-center">Sale<hr className="w-100 ms-2" /></small>
+          <NavLink className="nav-link" to="/sale">
+            <span className="nav-icon">
+              <i className="bi bi-box-seam" aria-hidden="true"></i>
+            </span>
+            <span className="nav-text">Sales</span>
+          </NavLink>
+          <NavLink className="nav-link" to="/sale-return">
+            <span className="nav-icon">
+              <i className="bi bi-box-seam" aria-hidden="true"></i>
+            </span>
+            <span className="nav-text">Sales Retrun</span>
+          </NavLink>
+
+          <small className="text-muted d-flex align-items-center">Inventories<hr className="w-100 ms-2" /></small>
+          <NavLink className="nav-link" to="/inventory-report">
+            <span className="nav-icon">
+              <i className="bi bi-people" aria-hidden="true"></i>
+            </span>
+            <span className="nav-text">Inventory Report</span>
+          </NavLink>
+          <NavLink className="nav-link" to="/inventory-transaction">
+            <span className="nav-icon">
+              <i className="bi bi-people" aria-hidden="true"></i>
+            </span>
+            <span className="nav-text">Inventory Transaction</span>
+          </NavLink>
+          <NavLink className="nav-link" to="/inventory-adjustment">
+            <span className="nav-icon">
+              <i className="bi bi-people" aria-hidden="true"></i>
+            </span>
+            <span className="nav-text">Inventory Adjustment</span>
+          </NavLink>
+          <NavLink className="nav-link" to="/adjustment-type">
+            <span className="nav-icon">
+              <i className="bi bi-people" aria-hidden="true"></i>
+            </span>
+            <span className="nav-text">Inventory Adjustment</span>
+          </NavLink>
+
+          <small className="text-muted d-flex align-items-center">Auth<hr className="w-100 ms-2" /></small>
           <NavLink className="nav-link" to="/user">
             <span className="nav-icon">
               <i className="bi bi-people" aria-hidden="true"></i>
             </span>
             <span className="nav-text">Users</span>
           </NavLink>
-          <a className="nav-link" href="add-user.html">
+          <NavLink className="nav-link" to="/role">
             <span className="nav-icon">
-              <i className="bi bi-person-plus" aria-hidden="true"></i>
+              <i className="bi bi-person-fill-gear" aria-hidden="true"></i>
             </span>
-            <span className="nav-text">Add User</span>
-          </a>
-          <a className="nav-link" href="profile.html">
+            <span className="nav-text">Role</span>
+          </NavLink>
+          {/* <a className="nav-link" href="profile.html">
             <span className="nav-icon">
               <i className="bi bi-person-badge" aria-hidden="true"></i>
             </span>
@@ -98,7 +160,7 @@ function Sidebar() {
               <i className="bi bi-file-earmark" aria-hidden="true"></i>
             </span>
             <span className="nav-text">Blank Page</span>
-          </a>
+          </a> */}
         </nav>
 
         <div className="sidebar-user">

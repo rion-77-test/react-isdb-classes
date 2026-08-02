@@ -26,11 +26,11 @@ export const routes = createBrowserRouter([
         element: <UserCreate />,
       },
       {
-        path: "/user-edit",
+        path: "/user-edit/:id",
         element: <UserEdit/>,
       },
       {
-        path: "/user-view",
+        path: "/user-view/:id/",
         element: <UserView/>,
       },
     ],

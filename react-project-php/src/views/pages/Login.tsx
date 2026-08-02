@@ -44,9 +44,9 @@ function Login() {
               Remember me
             </label>
           </div>
-          <button className="btn btn-primary w-100" type="submit">
+          <Link className="btn btn-primary w-100" to='/'>
             <i className="bi bi-box-arrow-in-right" aria-hidden="true"></i> Sign In
-          </button>
+          </Link>
         </form>
 
         <div className="auth-footer">

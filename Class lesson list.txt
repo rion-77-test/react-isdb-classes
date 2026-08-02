@@ -4,3 +4,4 @@
 29-07-2026 = Templating
 30-07-2026 = Templating, Routing using ReactRouterV8
 01-08-2026 = templating - usermanage, usercreate
+02-08-2026 = Dynamic Routing, database creation for class project ,templating - login, user-edit, user-details 

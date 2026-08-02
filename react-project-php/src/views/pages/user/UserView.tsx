@@ -1,33 +1,36 @@
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import PageHeading from "../../../components/PageHeading";
 
 function UserView() {
-  return (
+   const {id} = useParams();
+  return (   
     <>
-      <PageHeading
-        icon="people"
-        subtitle="Management"
-        title="Users Details"
-        desc="Inspect account status, profile data, permissions, and recent activity."
-      >
-        <div className="heading-actions">
-          <Link className="btn btn-outline-secondary btn-sm" to="/user">
-            <i className="bi bi-arrow-left" aria-hidden="true"></i> Back to List
-          </Link>
-          <Link className="btn btn-primary btn-sm" to="/user-create">
-            <i className="bi bi-person-plus" aria-hidden="true"></i> Add New
-          </Link>
-        </div>
-      </PageHeading>
       <main className="dashboard-content">
+        <h1>{id}</h1>
         <div className="container-fluid px-3 px-lg-4 py-4">
+          <PageHeading
+            icon="people"
+            subtitle="Management"
+            title="Users Details"
+            desc="Inspect account status, profile data, permissions, and recent activity."
+          >
+            {/* <div className="heading-actions"> */}
+            <Link className="btn btn-outline-secondary btn-sm" to="/user">
+              <i className="bi bi-arrow-left" aria-hidden="true"></i> Back to
+              List
+            </Link>
+            <Link className="btn btn-primary btn-sm" to="/user-create">
+              <i className="bi bi-person-plus" aria-hidden="true"></i> Add New
+            </Link>
+            {/* </div>  */}
+          </PageHeading>
           <section className="row g-3">
             <div className="col-12 col-xl-4">
               <div className="panel h-100 text-center profile-card">
-                {/* <div className="profile-cover">
-                  <img src="../assets/images/png/dasher-ui-bootstrap-5.jpg" alt="User workspace preview" />
-                </div> */}
-                <div className="profile-hero pt-5">
+                <div className="profile-cover">
+                  <img src="https://picsum.photos/300/300" alt="User workspace preview" />
+                </div>
+                <div className="profile-hero">
                   <img
                     className="avatar-img avatar-xl profile-photo"
                     src="https://i.pravatar.cc/149"
@@ -62,12 +65,17 @@ function UserView() {
                 <div className="panel-header">
                   <div>
                     <h2 className="h5 mb-1 section-title">
-                      <i className="bi bi-person-lines-fill" aria-hidden="true"></i>
+                      <i
+                        className="bi bi-person-lines-fill"
+                        aria-hidden="true"
+                      ></i>
                       <span>Account Overview</span>
                     </h2>
-                    <p className="text-muted mb-0">Permissions, plan, and current access details.</p>
+                    <p className="text-muted mb-0">
+                      Permissions, plan, and current access details.
+                    </p>
                   </div>
-                  <Link className="btn btn-primary btn-sm" to="/user-edit">
+                  <Link className="btn btn-primary btn-sm" to={`/user-edit/${id}`}>
                     Edit User
                   </Link>
                 </div>
@@ -99,14 +107,18 @@ function UserView() {
                       <i className="bi bi-clock-history" aria-hidden="true"></i>
                       <span>Recent Activity</span>
                     </h2>
-                    <p className="text-muted mb-0">Latest security and workflow events.</p>
+                    <p className="text-muted mb-0">
+                      Latest security and workflow events.
+                    </p>
                   </div>
                 </div>
                 <div className="activity-list">
                   <div className="activity-item">
                     <span className="activity-dot bg-primary"></span>
                     <div>
-                      <p className="mb-1 fw-semibold">Updated billing permissions</p>
+                      <p className="mb-1 fw-semibold">
+                        Updated billing permissions
+                      </p>
                       <p className="text-muted small mb-0">2 hours ago</p>
                     </div>
                   </div>
