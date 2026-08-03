@@ -1,7 +1,45 @@
 import { Link } from "react-router";
 import PageHeading from "../../../components/PageHeading";
+import { useEffect, useState } from "react";
+import { defaultUser, type User } from "../../../interfaces/User";
 
 function UserCreate() {
+  const [user, setUser] = useState<User>(defaultUser);
+  const [error, setError] = useState({
+    name: "",
+    email: "",
+    role_id: "",
+    password: "",
+  })
+
+  // useEffect
+
+  // function updateUser(e:any) {
+  //   setUser({...user, 
+  //     [e.target.name]: e.target.value})
+  // } 
+
+  function handleSubmit() {
+    let newError:any = {}
+    // Name validation
+    if(user.name == "") {
+      newError.name = "Name is required"
+    } else if (user.name.length > 100 || user.name.length < 3) {
+       newError.name = "Name must be between 3 and 100 characters"
+    } else {
+      newError.name = ""
+    }
+
+    // Name validation
+    if(user.email == "") {
+      newError.email = "Email is required"
+    } else {
+      newError.email = ""
+    }
+   setError(newError)    
+  //  setError({...error ,...newError})    
+  }
+
   return (
     <>
      <main className="dashboard-content">
@@ -21,45 +59,22 @@ function UserCreate() {
           <section className="row g-3">
             <div className="col-12">
               <form className="panel needs-validation">
-                <div className="panel-header">
-                  <div>
-                    <h2 className="h5 mb-1 section-title">
-                      <i className="bi bi-person-plus" aria-hidden="true"></i>
-                      <span>User Information</span>
-                    </h2>
-                    <p className="text-muted mb-0">
-                      Create a user account with validated fields.
-                    </p>
-                  </div>
-                </div>
                 <div className="row g-3">
                   <div className="col-md-6">
                     <label className="form-label" htmlFor="firstName">
-                      First name
+                      Name
                     </label>
                     <input
                       className="form-control"
                       id="firstName"
                       type="text"
                       required
+                      name="name"
+                      value={user.name}
+                      onChange={(e)=> {setUser({...user, name: e.target.value})}}
+                      // onChange={updateUser}
                     />
-                    <div className="invalid-feedback">
-                      First name is required.
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <label className="form-label" htmlFor="lastName">
-                      Last name
-                    </label>
-                    <input
-                      className="form-control"
-                      id="lastName"
-                      type="text"
-                      required
-                    />
-                    <div className="invalid-feedback">
-                      Last name is required.
-                    </div>
+                    <small className="text-danger">{error.name}</small>
                   </div>
                   <div className="col-md-6">
                     <label className="form-label" htmlFor="email">
@@ -69,74 +84,55 @@ function UserCreate() {
                       className="form-control"
                       id="email"
                       type="email"
+                      value={user.email}
+                      onChange={(e)=> {setUser({...user, email: e.target.value})}}
                       required
                     />
-                    <div className="invalid-feedback">Enter a valid email.</div>
-                  </div>
-                  <div className="col-md-6">
-                    <label className="form-label" htmlFor="phone">
-                      Phone
-                    </label>
-                    <input
-                      className="form-control"
-                      id="phone"
-                      type="tel"
-                      required
-                    />
-                    <div className="invalid-feedback">
-                      Phone number is required.
-                    </div>
+                    <small className="text-danger">{error.email}</small>
                   </div>
                   <div className="col-md-6">
                     <label className="form-label" htmlFor="role">
                       Role
                     </label>
-                    <select className="form-select" id="role" required>
-                      <option value="">Choose role</option>
-                      <option>Admin</option>
-                      <option>Manager</option>
-                      <option>Editor</option>
-                      <option>Viewer</option>
+                    <select className="form-select" id="role" required  value={user.role_id}
+                    onChange={(e)=> {setUser({...user, role_id: Number(e.target.value)})}}
+                    >
+                      <option value={0} disabled>Choose a role</option>
+                      <option value={1}>Admin</option>
+                      <option value={2}>Manager</option>
+                      <option value={3}>Editor</option>
+                      <option value={4}>Viewer</option>
                     </select>
-                    <div className="invalid-feedback">Choose a role.</div>
+                    {/* <small className="text-danger">{error.email}</small> */}
+                    <div className="invalid-feedback">{error.role_id}</div>
                   </div>
                   <div className="col-md-6">
-                    <label className="form-label" htmlFor="team">
-                      Team
+                    <label className="form-label" htmlFor="password">
+                      Password
                     </label>
-                    <select className="form-select" id="team" required>
-                      <option value="">Choose team</option>
-                      <option>Operations</option>
-                      <option>Sales</option>
-                      <option>Content</option>
-                      <option>Finance</option>
-                    </select>
-                    <div className="invalid-feedback">Choose a team.</div>
-                  </div>
-                  <div className="col-12">
-                    <label className="form-label" htmlFor="notes">
-                      Notes
-                    </label>
-                    <textarea
+                    <input
                       className="form-control"
-                      id="notes"
-                      rows={4}
-                      placeholder="Optional onboarding notes"
-                    ></textarea>
+                      id="password"
+                      type="password"
+                      value={user.password}
+                      onChange={(e)=> {setUser({...user, password: e.target.value})}}
+                      required
+                    />
+                    <small className="text-danger">{error.password}</small>
                   </div>
                 </div>
                 <div className="d-flex flex-wrap justify-content-end gap-2 mt-4">
                   <button className="btn btn-outline-secondary" type="reset">
                     Cancel
                   </button>
-                  <button className="btn btn-primary" type="submit">
-                    <i className="bi bi-person-check" aria-hidden="true"></i>{" "}
-                    Create User
+                  <button className="btn btn-primary" type="button" onClick={handleSubmit}>
+                    Create New
                   </button>
                 </div>
               </form>
-            </div>    
+            </div>
           </section>
+
         </div>
       </main>
       
