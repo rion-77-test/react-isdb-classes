@@ -5,3 +5,5 @@
 30-07-2026 = Templating, Routing using ReactRouterV8
 01-08-2026 = templating - usermanage, usercreate
 02-08-2026 = Dynamic Routing, database creation for class project ,templating - login, user-edit, user-details 
+03-08-2026 = Form Data Handling, Postman introduction with fake api 
+04-08-2026 = Axios, Getting data from fake api using Axios
