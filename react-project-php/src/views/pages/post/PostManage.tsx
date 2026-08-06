@@ -6,6 +6,7 @@ import type { Post } from "../../../interfaces/Post";
 
 function PostManage() {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [msg, setMsg] = useState("");
 
   function getAllData() {
     axios
@@ -22,6 +23,22 @@ function PostManage() {
   useEffect(() => {
     getAllData();
   }, []);
+
+  // Delete Handlder
+
+  function handleDelete(id: number | undefined) {
+    axios
+      .delete("https://jsonplaceholder.typicode.com/posts/" + id)
+      .then(function (res) {
+        console.log(res);
+        if (res.status == 200) setMsg("🥳Post failed to Delete Unsuccessfully");
+        getAllData();
+      })
+      .catch(function (err) {
+        console.log(err);
+        setMsg("😥Post Deleted Unsuccessfully");
+      });
+  }
 
   return (
     <>
@@ -133,6 +150,11 @@ function PostManage() {
               </div>
             </div>
             <div className="table-responsive">
+              {msg !== "" && (
+                <div className="alert alert-success" role="alert">
+                  {msg}
+                </div>
+              )}
               <table
                 className="table align-middle mb-0"
                 id="postsTable"
@@ -157,11 +179,13 @@ function PostManage() {
                         <div className="d-flex align-items-center gap-2">
                           <img
                             className="avatar-img avatar-sm"
-                            src={`https://i.pravatar.cc/${item.id+100}`}
+                            src={`https://i.pravatar.cc/${item.id ? item.id + 100 : 100}`}
                             alt="Sarah Ahmed"
                           />
                           <div>
-                          <p className="fw-semibold mb-0">{item.userId} Sarah Ahmed</p>
+                            <p className="fw-semibold mb-0">
+                              {item.userId} Sarah Ahmed
+                            </p>
                             <p className="text-muted small mb-0">
                               sarah@example.com
                             </p>
@@ -184,7 +208,10 @@ function PostManage() {
                           >
                             <i className="bi bi-pencil-square"></i>
                           </Link>
-                          <button className="btn btn-sm btn-outline-danger">
+                          <button
+                            onClick={() => handleDelete(item.id)}
+                            className="btn btn-sm btn-outline-danger"
+                          >
                             <i className="bi bi-trash"></i>
                           </button>
                         </div>

@@ -2,9 +2,11 @@ import { Link } from "react-router";
 import PageHeading from "../../../components/PageHeading";
 import { useState } from "react";
 import { defaultPost, type Post } from "../../../interfaces/Post";
+import axios from "axios";
 
 function PostCreate() {
   const [post, setPost] = useState<Post>(defaultPost);
+  const [msg, setMsg] = useState("");
   const [error, setError] = useState({
     title: "",
     body: "",
@@ -27,7 +29,25 @@ function PostCreate() {
     } else {
       newError.body = "";
     }
+
     setError(newError);
+
+    if (error.title === "" && error.body === "") {
+      axios
+        .post("https://jsonplaceholder.typicode.com/Posts/", post)
+        .then(function (res) {
+          console.log(res.data);
+          setPost(res.data);
+          setMsg("🥳Post failed to Create Unsuccessfully");
+          // location.href='/post'
+        })
+        .catch(function (err) {
+          console.log(err);
+          setMsg("😥Post Created Unsuccessfully");
+        });
+    }
+
+    // console.log(post);
   }
 
   return (
@@ -48,6 +68,12 @@ function PostCreate() {
 
           <section className="row g-3">
             <div className="col-12">
+              {/* Alert */}
+              {msg !== "" && (
+                <div className="alert alert-success" role="alert">
+                  {msg}
+                </div>
+              )}
               <form className="panel needs-validation">
                 <input type="hidden" value={post.userId} />
                 <div className="row g-3">

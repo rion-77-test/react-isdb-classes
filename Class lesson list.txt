@@ -7,3 +7,4 @@
 02-08-2026 = Dynamic Routing, database creation for class project ,templating - login, user-edit, user-details 
 03-08-2026 = Form Data Handling, Postman introduction with fake api 
 04-08-2026 = Axios, Getting data from fake api using Axios
+06-08-2026 = put, post and delete method with Axios and fake api

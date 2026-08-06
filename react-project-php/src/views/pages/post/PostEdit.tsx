@@ -1,16 +1,29 @@
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import PageHeading from "../../../components/PageHeading";
-import { useState } from "react";
-import { defaultPost, type Post } from "../../../interfaces/Post";
-import { useParams } from "react-router"; 
-
-
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { type Post, defaultPost } from "../../../interfaces/Post";
 
 function PostEdit() {
-
-  const {id} = useParams();
-
+  const { id } = useParams();
   const [post, setPost] = useState<Post>(defaultPost);
+  const [msg, setMsg] = useState("");
+
+  function getData() {
+    axios
+      .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      .then(function (res) {
+        setPost(res.data);
+        // console.log(res.data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }
+  useEffect(() => {
+    getData();
+  }, []);
+
   const [error, setError] = useState({
     title: "",
     body: "",
@@ -33,7 +46,23 @@ function PostEdit() {
     } else {
       newError.body = "";
     }
+
     setError(newError);
+
+    // console.log(post);
+
+    axios
+      .put("https://jsonplaceholder.typicode.com/posts/" + id, post)
+      .then(function (res) {
+        console.log(res.data);
+        setPost(res.data);
+        setMsg("🥳Post Updated Successfully");
+        // location.href='/post'
+      })
+      .catch(function (err) {
+        console.log(err);
+        setMsg("😥Post Failed to Update Successfully");
+      });
   }
 
   return (
@@ -54,6 +83,13 @@ function PostEdit() {
 
           <section className="row g-3">
             <div className="col-12">
+              {/* Alert */}
+              {msg !== "" && (
+                <div className="alert alert-success" role="alert">
+                  {msg}
+                </div>
+              )}
+
               <form className="panel needs-validation">
                 <input type="hidden" value={post.userId} />
                 <div className="row g-3">
@@ -86,6 +122,7 @@ function PostEdit() {
                         setPost({ ...post, body: e.target.value });
                       }}
                       required
+                      rows={8}
                     ></textarea>
                     <small className="text-danger">{error.body}</small>
                   </div>

@@ -1,9 +1,29 @@
 import { Link, useParams } from "react-router";
 import PageHeading from "../../../components/PageHeading";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { type Post, defaultPost } from "../../../interfaces/Post";
 
 function PostDetails() {
-   const {id} = useParams();
-  return (   
+  const { id } = useParams();
+  const [post, setPost] = useState<Post>(defaultPost);
+
+  function getData() {
+    axios
+      .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      .then(function (res) {
+        setPost(res.data);
+        // console.log(res.data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }
+  useEffect(() => {
+    getData();
+  },[]);
+  // getData();
+  return (
     <>
       <main className="dashboard-content">
         <h1>{id}</h1>
@@ -28,7 +48,10 @@ function PostDetails() {
             <div className="col-12 col-xl-4">
               <div className="panel h-100 text-center profile-card">
                 <div className="profile-cover">
-                  <img src="https://picsum.photos/300/300" alt="User workspace preview" />
+                  <img
+                    src="https://picsum.photos/300/300"
+                    alt="User workspace preview"
+                  />
                 </div>
                 <div className="profile-hero">
                   <img
@@ -36,27 +59,9 @@ function PostDetails() {
                     src="https://i.pravatar.cc/149"
                     alt="Sarah Ahmed"
                   />
-                  <h2 className="h5 mb-1">Sarah Ahmed</h2>
-                  <p className="text-muted mb-3">Senior Administrator</p>
-                  <span className="badge text-bg-success">Active Account</span>
-                </div>
-                <div className="info-list mt-4 text-start">
-                  <div>
-                    <span>Email</span>
-                    <strong>sarah@example.com</strong>
-                  </div>
-                  <div>
-                    <span>Phone</span>
-                    <strong>+1 555 0184</strong>
-                  </div>
-                  <div>
-                    <span>Team</span>
-                    <strong>Operations</strong>
-                  </div>
-                  <div>
-                    <span>Location</span>
-                    <strong>New York, USA</strong>
-                  </div>
+                  <h2 className="h5 mb-1">{post.userId}</h2>
+                  <p className="text-muted mb-3">{post.title} Senior Administrator</p>
+                  <div>{post.body}</div>
                 </div>
               </div>
             </div>
@@ -69,35 +74,17 @@ function PostDetails() {
                         className="bi bi-person-lines-fill"
                         aria-hidden="true"
                       ></i>
-                      <span>Account Overview</span>
+                      <span>{post.title}</span>
                     </h2>
-                    <p className="text-muted mb-0">
-                      Permissions, plan, and current access details.
-                    </p>
                   </div>
-                  <Link className="btn btn-primary btn-sm" to={`/user-edit/${id}`}>
-                    Edit User
-                  </Link>
                 </div>
                 <div className="row g-3">
-                  <div className="col-md-4">
+                  <div className="col-12">
                     <div className="mini-card">
-                      <span>Role</span>
-                      <strong>Admin</strong>
+                      <div>{post.body}</div>
                     </div>
                   </div>
-                  <div className="col-md-4">
-                    <div className="mini-card">
-                      <span>Last Login</span>
-                      <strong>Today</strong>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="mini-card">
-                      <span>Projects</span>
-                      <strong>14 Active</strong>
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
               <div className="panel">
