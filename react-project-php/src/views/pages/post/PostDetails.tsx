@@ -7,13 +7,32 @@ import { type Post, defaultPost } from "../../../interfaces/Post";
 function PostDetails() {
   const { id } = useParams();
   const [post, setPost] = useState<Post>(defaultPost);
+  // const [post, setPost] = useState<any>();
+  const [user, setUser] = useState<any>();
+  const [comments, setComments] = useState<any>();
 
   function getData() {
     axios
       .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then(function (res) {
         setPost(res.data);
-        // console.log(res.data);
+        console.log(res.data);
+        // console.log(post);
+        return axios.get(
+          `https://jsonplaceholder.typicode.com/users/${res.data.userId}`,
+        );
+      })
+      .then(function (res) {
+        setUser(res.data);
+        console.log(res.data);
+      })
+      .then(function () {
+        axios
+          .get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
+          .then(function (res) {
+            console.log(res.data);
+            setComments(res.data);
+          });
       })
       .catch(function (err) {
         console.log(err);
@@ -21,7 +40,7 @@ function PostDetails() {
   }
   useEffect(() => {
     getData();
-  },[]);
+  }, []);
   // getData();
   return (
     <>
@@ -35,11 +54,11 @@ function PostDetails() {
             desc="Inspect account status, profile data, permissions, and recent activity."
           >
             {/* <div className="heading-actions"> */}
-            <Link className="btn btn-outline-secondary btn-sm" to="/user">
+            <Link className="btn btn-outline-secondary btn-sm" to="/post">
               <i className="bi bi-arrow-left" aria-hidden="true"></i> Back to
               List
             </Link>
-            <Link className="btn btn-primary btn-sm" to="/user-create">
+            <Link className="btn btn-primary btn-sm" to="/post-create">
               <i className="bi bi-person-plus" aria-hidden="true"></i> Add New
             </Link>
             {/* </div>  */}
@@ -56,12 +75,13 @@ function PostDetails() {
                 <div className="profile-hero">
                   <img
                     className="avatar-img avatar-xl profile-photo"
-                    src="https://i.pravatar.cc/149"
+                    src={`https://i.pravatar.cc/${150+ (user?.id ?? 0)}`}
                     alt="Sarah Ahmed"
                   />
-                  <h2 className="h5 mb-1">{post.userId}</h2>
-                  <p className="text-muted mb-3">{post.title} Senior Administrator</p>
-                  <div>{post.body}</div>
+                  <h2 className="h5 mb-1">{user?.name ?? "loading.."}</h2>
+                  <h2 className="h6 mb-1">{user?.username ?? "loading.."}</h2>
+                  <h2 className="h6 mb-1">{user?.email ?? "loading.."}</h2>
+                  <h2 className="h6 mb-1"> {user?.phone ?? "loading.."}</h2>
                 </div>
               </div>
             </div>
@@ -74,17 +94,16 @@ function PostDetails() {
                         className="bi bi-person-lines-fill"
                         aria-hidden="true"
                       ></i>
-                      <span>{post.title}</span>
+                      <span>{post?.title ?? "loading.."}</span>
                     </h2>
                   </div>
                 </div>
                 <div className="row g-3">
                   <div className="col-12">
                     <div className="mini-card">
-                      <div>{post.body}</div>
+                      <div>{post?.body ?? "loading.."}</div>
                     </div>
                   </div>
-                 
                 </div>
               </div>
               <div className="panel">
@@ -92,37 +111,25 @@ function PostDetails() {
                   <div>
                     <h2 className="h5 mb-1 section-title">
                       <i className="bi bi-clock-history" aria-hidden="true"></i>
-                      <span>Recent Activity</span>
+                      <span>Comments</span>
                     </h2>
-                    <p className="text-muted mb-0">
-                      Latest security and workflow events.
-                    </p>
+                    <p className="text-muted mb-0">Comments of this post</p>
                   </div>
                 </div>
                 <div className="activity-list">
-                  <div className="activity-item">
-                    <span className="activity-dot bg-primary"></span>
-                    <div>
-                      <p className="mb-1 fw-semibold">
-                        Updated billing permissions
-                      </p>
-                      <p className="text-muted small mb-0">2 hours ago</p>
-                    </div>
-                  </div>
-                  <div className="activity-item">
-                    <span className="activity-dot bg-success"></span>
-                    <div>
-                      <p className="mb-1 fw-semibold">Approved new teammate</p>
-                      <p className="text-muted small mb-0">Yesterday</p>
-                    </div>
-                  </div>
-                  <div className="activity-item">
-                    <span className="activity-dot bg-warning"></span>
-                    <div>
-                      <p className="mb-1 fw-semibold">Changed password</p>
-                      <p className="text-muted small mb-0">Apr 30, 2026</p>
-                    </div>
-                  </div>
+                  {comments &&
+                    comments.map((comment: any) => (
+                      <div key={comment.id} className="activity-item">
+                        <span className="activity-dot bg-primary"></span>
+                        <div>
+                          <p className="mb-1 fw-semibold">{comment.name}</p>
+                          <p className="text-muted small mb-0">
+                            {comment.email}
+                          </p>
+                          <p>{comment.body}</p>
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>

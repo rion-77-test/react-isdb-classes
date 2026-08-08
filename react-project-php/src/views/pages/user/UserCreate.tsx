@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import PageHeading from "../../../components/PageHeading";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { defaultUser, type User } from "../../../interfaces/User";
 
 function UserCreate() {

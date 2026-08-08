@@ -7,8 +7,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.min.css'
 import "./assets/css/custom.css"
 
-import App from './App.tsx'
-
 import {routes} from './routes.tsx'
 
 createRoot(document.getElementById('root')!).render(
